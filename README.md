@@ -2,7 +2,7 @@
 
 * 首页（底部导航、列表菜单、轮播图）
 
-！[](./images/Image1.png)
+！[我是图片](./images/Image1.png)
 
 * 商家列表页
 
