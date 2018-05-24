@@ -1,0 +1,23 @@
+<!-- 顶部轮播图 -->
+<view class="swiper">
+   <swiper indicator-dots="{{ true }}" indicator-active-color="#3A4861" autoplay="{{ true}}" interval="{{ 3000 }}" circular="{{true}}">
+    <swiper-item wx:for="{{ list }}" wx:key="id">
+      <image src="{{ item.image }}"></image>
+    </swiper-item>
+  </swiper> 
+</view>
+
+<!-- 中间九宫格菜单 -->
+<view class="grids">
+<!-- 注意：使用 navigator 直接替换原来的view组件 -->
+  <navigator url="/pages/list/list?id={{ item.id }}" class="grid-item" wx:for="{{ menus }}" wx:key="id">
+    <image src="{{ item.icon }}"></image>
+    <text>{{ item.name }}</text>
+  </navigator>
+</view>
+
+<!-- 底部链接 -->
+<view class="links">
+  <image src="/images/links/link-01.png" mode="aspectFit"></image>
+  <image src="/images/links/link-02.png" mode="aspectFit"></image>
+</view>

@@ -1,0 +1,2 @@
+/* 在 app.wxss 中引入样式，因为，每个页面中都有可能使用 weui，因此，将其放在一个公共的地方进行引入 */
+@import 'style/weui.wxss'

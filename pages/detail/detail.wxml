@@ -1,0 +1,58 @@
+<!-- 轮播图 -->
+<swiper class="slides" indicator-dots="2" indicator-color="#bcc0c9" indicator-active-color="#3a4861">
+  <swiper-item wx:for="{{ tools.sliceImg(detail.images) }}" wx:key="*this">
+    <image src="{{ item }}" mode="aspectFill"/>
+  </swiper-item>
+</swiper>
+
+<!-- 店铺详情 -->
+<view class="heading">
+  <text class="name">{{ detail.name }}</text>
+  <text class="phone">电话：{{ detail.phone }}</text>
+  <text class="address">地址：{{ detail.address }}</text>
+  <text class="hours">营业时间：{{ detail.businessHours }}</text>
+  <view class="score">{{ detail.score }}分</view>
+</view>
+
+<!-- 店铺介绍 -->
+<view class="introduction" wx:if="{{ detail.introduction }}">
+  <text>{{ detail.introduction }}</text>
+</view>
+
+<!-- 评论区 -->
+<view class="comments">
+  <view class="item" wx:for="{{ detail.comments }}" wx:key="name">
+    <text class="name">{{ item.name }}</text>
+    <text class="date">{{ item.date }}</text>
+    <text class="rating">{{ item.rating }}</text>
+    <text class="content">{{ item.content }}</text>
+    <view class="images">
+      <!-- 
+      img地址：http://p0.meituan.net/w.h/shaitu/592167e0826aec5b617b961d061b3096409943.jpg
+      将其替换为：http://p0.meituan.net/100.100/shaitu/592167e0826aec5b617b961d061b3096409943.jpg
+      -->
+      <image src="{{ tools.replaceImg(img) }}" wx:for="{{ item.images }}" wx:for-item="img" wx:key="*this" bindtap="previewImage" data-urls="{{ item.images }}" data-current="{{ img }}" />
+    </view>
+  </view>
+</view>
+
+<!-- wxs（weixin script 类似于JavaScript的脚本语言，但是与JS不完全相同，可以立即为：ES5） -->
+<!-- 作用：辅助构建页面结构 https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxs/ -->
+<wxs module="tools">
+  function replaceImg(img) {
+    return img.replace('w.h', '100.100')
+  }
+
+  function sliceImg(imgArr) {
+    if (imgArr === undefined) return
+
+    return imgArr.length > 6
+          ? imgArr.slice(0, 6)
+          : imgArr
+  }
+
+  module.exports = {
+    replaceImg: replaceImg,
+    sliceImg: sliceImg
+  }
+</wxs>
